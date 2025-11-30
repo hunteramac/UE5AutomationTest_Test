@@ -1,0 +1,7 @@
+{
+	"id": "testtest",
+	"name": "MyTests",
+	"enabledTests": [
+		"MyActor.AMyActor.Should not have this test fail due to errors in setup or teardown"
+	]
+}

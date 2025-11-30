@@ -1,6 +1,7 @@
 #if WITH_AUTOMATION_TESTS
 
 #include "Misc/AutomationTest.h"
+#include "MyActor.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FPlaceholderTest, "TestGroup.TestSubgroup.Placeholder Test", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
@@ -10,17 +11,49 @@ bool FPlaceholderTest::RunTest(const FString& Parameters)
 	return true;
 }
 
-DEFINE_SPEC(MyCustomSpec, "MyGame.MyCustomSpec", EAutomationTestFlags::ProductFilter | EAutomationTestFlags_ApplicationContextMask)
-void MyCustomSpec::Define()
+BEGIN_DEFINE_SPEC(FMyActorSpec, "MyActor",
+	EAutomationTestFlags_ApplicationContextMask |
+	EAutomationTestFlags::ProductFilter
+)
+
+TUniquePtr<UWorld> world;
+TWeakObjectPtr<AMyActor> subject;
+
+END_DEFINE_SPEC(FMyActorSpec)
+
+void FMyActorSpec::Define()
 {
-	Describe("FExampleOne", [this]()
+	Describe("AMyActor", [this]()
 	{
-		It("should return true", [this]()
+		BeforeEach([this]()
 		{
-			TestTrue("athing", true);
+			// setup the world 
+			// spawn in actor to world
+		});
+
+		AfterEach([this]()
+		{
+			// tear down
+		});
+
+		It("Should not have this test fail due to errors in setup or teardown", [this]()
+		{
+			//do nothing
 		});
 	});
 }
+
+//DEFINE_SPEC(MyCustomSpec, "MyGame.MyCustomSpec", EAutomationTestFlags::ProductFilter | EAutomationTestFlags_ApplicationContextMask)
+//void MyCustomSpec::Define()
+//{
+//	Describe("FExampleOne", [this]()
+//	{
+//		It("should return true", [this]()
+//		{
+//			TestTrue("athing", true);
+//		});
+//	});
+//}
 
 
 //DEFINE_SPEC(FMyCustomSpec, "MyGame.MyCustomSpec", EAutomationTestFlags::ProductFilter | EAutomationTestFlags::ApplicationContextMask)
