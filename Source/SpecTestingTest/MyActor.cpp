@@ -25,3 +25,8 @@ void AMyActor::Tick(float DeltaTime)
 
 }
 
+bool AMyActor::doAThing()
+{
+	return false;
+}
+
