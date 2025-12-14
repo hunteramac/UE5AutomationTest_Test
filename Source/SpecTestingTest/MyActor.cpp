@@ -30,3 +30,17 @@ bool AMyActor::doAThing()
 	return true;
 }
 
+void AMyActor::HandleEvent()
+{
+}
+
+uint64 AMyActor::numberOperation(uint64 in1, uint64 in2)
+{
+	return in1 + in2;
+}
+
+void AMyActor::Subscribe(FDynamicDelegate &toSubscribeTo)
+{
+	toSubscribeTo.BindDynamic(this, &AMyActor::HandleEvent);
+}
+

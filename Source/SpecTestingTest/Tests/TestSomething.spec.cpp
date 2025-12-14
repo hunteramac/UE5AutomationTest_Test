@@ -54,6 +54,17 @@ void FMyActorSpec::Define()
 		{
 				TestTrue("doThing()", TestSubject->doAThing());
 		});
+		
+		It("can add 1", [this]() {
+			TestEqual("add a thing()", TestSubject->numberOperation(1, 2), 3);
+		});
+
+		It("can have Subscribe method called with a provided dynamic delegate type", [this]()
+			{
+				FDynamicDelegate TestDelegateInstance;
+				TestSubject->Subscribe(TestDelegateInstance);
+				TestTrue("delegate was bound to", TestDelegateInstance.IsBound());
+			});
 	});
 }
 

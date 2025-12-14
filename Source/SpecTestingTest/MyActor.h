@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "MyActor.generated.h"
 
+DECLARE_DYNAMIC_DELEGATE(FDynamicDelegate);
+
 UCLASS()
 class SPECTESTINGTEST_API AMyActor : public AActor
 {
@@ -19,10 +21,17 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UFUNCTION()
+	void HandleEvent();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
 	bool doAThing();
+
+	uint64 numberOperation(uint64 in1, uint64 in2);
+
+	void Subscribe(FDynamicDelegate &toSubscribeTo);
 };
