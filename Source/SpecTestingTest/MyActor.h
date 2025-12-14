@@ -7,6 +7,7 @@
 #include "MyActor.generated.h"
 
 DECLARE_DYNAMIC_DELEGATE(FDynamicDelegate);
+DECLARE_MULTICAST_DELEGATE(FMulticastDelegate);
 
 UCLASS()
 class SPECTESTINGTEST_API AMyActor : public AActor
@@ -33,5 +34,5 @@ public:
 
 	uint64 numberOperation(uint64 in1, uint64 in2);
 
-	void Subscribe(FDynamicDelegate &toSubscribeTo);
+	void Subscribe(FMulticastDelegate &toSubscribeTo);
 };
